@@ -51,6 +51,7 @@
         android:text="@string/save"
         android:id="@+id/btn_save"
         android:textColor="#fff"
+        android:onClick="onSaveClick"
         android:background="#3B753D"
         android:layout_marginTop="5dp"/>
 
