@@ -24,6 +24,6 @@
         android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="80dp"
         android:textColor="#fff"
-        android:background="#3B753D"/>
+        android:background="@color/colorButton"/>
 
 </RelativeLayout>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Harman_C0765590_FT</string>
+    <string name="app_name">Register</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -8,4 +8,7 @@
     <string name="email">email</string>
     <string name="phone">phone</string>
     <string name="save">SAVE</string>
+    <string name="select_light">Select the traffic lights</string>
+    <string name="not_robot">I\'m not a robot</string>
+    <string name="verify">VERIFY</string>
 </resources>
