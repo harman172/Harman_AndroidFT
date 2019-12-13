@@ -18,6 +18,7 @@ import android.widget.ListView;
 
 import com.example.harman_c0765590_ft.R;
 import com.example.harman_c0765590_ft.RegistrationActivity;
+import com.example.harman_c0765590_ft.adapters.UserListAdapter;
 import com.example.harman_c0765590_ft.interfaces.UpdateListListener;
 import com.example.harman_c0765590_ft.models.UserModel;
 
@@ -33,7 +34,6 @@ public class AddUserFragment extends Fragment {
     private UpdateListListener updateListListener;
     private List<UserModel> list;
 
-    ArrayList names = new ArrayList();
 
     public AddUserFragment() {
         // Required empty public constructor
@@ -59,12 +59,10 @@ public class AddUserFragment extends Fragment {
         list = updateListListener.updateList();
         Log.i("AddUser", "onCreateView Frag: " + list.size());
 
-        for (int i= 0 ; i<list.size(); i++){
-            names.add(list.get(i).getName());
-        }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter(context,android.R.layout.simple_list_item_1,names);
-        listView.setAdapter(adapter);
+        UserListAdapter listAdapter = new UserListAdapter(context,list);
+
+        listView.setAdapter(listAdapter);
 
 
         button.setOnClickListener(new View.OnClickListener() {

@@ -19,8 +19,6 @@ public class MainActivity extends AppCompatActivity implements UpdateListListene
     private boolean isDualPane = false;
     private static List<UserModel> usersList = new ArrayList<>();
 
-    Intent intent;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,17 +32,15 @@ public class MainActivity extends AppCompatActivity implements UpdateListListene
         Log.i("AddUser", "onCreate: ");
 
 
-
     }
 
 
     @Override
     public List<UserModel> updateList() {
-        intent = getIntent();
+        Intent intent = getIntent();
         UserModel user = (UserModel) intent.getSerializableExtra("user");
         if (user != null){
             usersList.add(user);
-            Log.i("AddUser", "onCreate0: " + usersList.size());
         }
         return usersList;
     }
