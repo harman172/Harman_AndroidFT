@@ -8,13 +8,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.harman_c0765590_ft.fragments.UserDetailsFragment;
+import com.example.harman_c0765590_ft.interfaces.OnListItemClickListener;
 import com.example.harman_c0765590_ft.interfaces.UpdateListListener;
 import com.example.harman_c0765590_ft.models.UserModel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements UpdateListListener {
+public class MainActivity extends AppCompatActivity implements UpdateListListener, OnListItemClickListener {
 
     private boolean isDualPane = false;
     private static List<UserModel> usersList = new ArrayList<>();
@@ -43,6 +46,20 @@ public class MainActivity extends AppCompatActivity implements UpdateListListene
             usersList.add(user);
         }
         return usersList;
+    }
+
+    @Override
+    public void onclick(int index) {
+        if (isDualPane) {
+            UserDetailsFragment descriptionFragment = (UserDetailsFragment) getSupportFragmentManager().findFragmentById(R.id.frag_user_info);
+            descriptionFragment.displayDetails(index, usersList);
+        } else {
+
+            Intent intent = new Intent(this, UserDetailsActivity.class);
+            intent.putExtra("index", index);
+            intent.putExtra("list", (Serializable) usersList);
+            startActivity(intent);
+        }
     }
 }
 

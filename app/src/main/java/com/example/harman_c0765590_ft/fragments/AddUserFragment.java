@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -19,6 +20,7 @@ import android.widget.ListView;
 import com.example.harman_c0765590_ft.R;
 import com.example.harman_c0765590_ft.RegistrationActivity;
 import com.example.harman_c0765590_ft.adapters.UserListAdapter;
+import com.example.harman_c0765590_ft.interfaces.OnListItemClickListener;
 import com.example.harman_c0765590_ft.interfaces.UpdateListListener;
 import com.example.harman_c0765590_ft.models.UserModel;
 
@@ -32,6 +34,7 @@ public class AddUserFragment extends Fragment {
 
     private Context context;
     private UpdateListListener updateListListener;
+    private OnListItemClickListener itemClickListener;
     private List<UserModel> list;
 
 
@@ -44,6 +47,7 @@ public class AddUserFragment extends Fragment {
         super.onAttach(context);
         this.context = context;
         this.updateListListener = (UpdateListListener) context;
+        this.itemClickListener = (OnListItemClickListener) context;
     }
 
     @Override
@@ -61,7 +65,6 @@ public class AddUserFragment extends Fragment {
 
 
         UserListAdapter listAdapter = new UserListAdapter(context,list);
-
         listView.setAdapter(listAdapter);
 
 
@@ -70,6 +73,15 @@ public class AddUserFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(context, RegistrationActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (itemClickListener != null){
+                    itemClickListener.onclick(position);
+                }
             }
         });
 
