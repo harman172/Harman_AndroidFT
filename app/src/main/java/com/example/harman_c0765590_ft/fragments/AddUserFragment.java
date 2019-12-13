@@ -8,13 +8,21 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 import com.example.harman_c0765590_ft.R;
 import com.example.harman_c0765590_ft.RegistrationActivity;
+import com.example.harman_c0765590_ft.interfaces.UpdateListListener;
+import com.example.harman_c0765590_ft.models.UserModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,6 +30,10 @@ import com.example.harman_c0765590_ft.RegistrationActivity;
 public class AddUserFragment extends Fragment {
 
     private Context context;
+    private UpdateListListener updateListListener;
+    private List<UserModel> list;
+
+    ArrayList names = new ArrayList();
 
     public AddUserFragment() {
         // Required empty public constructor
@@ -31,6 +43,7 @@ public class AddUserFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         this.context = context;
+        this.updateListListener = (UpdateListListener) context;
     }
 
     @Override
@@ -41,6 +54,18 @@ public class AddUserFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_add_user, container, false);
 
         Button button = view.findViewById(R.id.btn_add_user);
+        ListView listView = view.findViewById(R.id.users_list);
+
+        list = updateListListener.updateList();
+        Log.i("AddUser", "onCreateView Frag: " + list.size());
+
+        for (int i= 0 ; i<list.size(); i++){
+            names.add(list.get(i).getName());
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter(context,android.R.layout.simple_list_item_1,names);
+        listView.setAdapter(adapter);
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,3 +79,5 @@ public class AddUserFragment extends Fragment {
     }
 
 }
+
+
