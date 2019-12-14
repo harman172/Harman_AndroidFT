@@ -2,10 +2,14 @@ package com.example.harman_c0765590_ft;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -22,6 +26,7 @@ public class VerifyRobotActivity extends AppCompatActivity {
     int[] checked = {-1, -1, -1, -1, -1, -1, -1, -1, -1};
 
     int[] correctData = {R.drawable.img1, R.drawable.img2, R.drawable.img3, R.drawable.img4};
+    private CheckBox cbRobot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,7 @@ public class VerifyRobotActivity extends AppCompatActivity {
 
         final GridView gridView = findViewById(R.id.grid_view);
         final ImageView ivRefresh = findViewById(R.id.iv_refresh);
+        cbRobot = findViewById(R.id.cb_robot);
 
         final RobotCellAdapter cellAdapter = new RobotCellAdapter(this, trafficImages,0);
         gridView.setAdapter(cellAdapter);
@@ -75,10 +81,12 @@ public class VerifyRobotActivity extends AppCompatActivity {
     public void onVerification(View view){
 
         int count = 0;
+        boolean isChosen = false;
 
         for (int i = 0; i<checked.length; i++){
 
             if (checked[i] == 0){
+                isChosen = true;
 
                 for (int j=0 ; j<correctData.length; j++){
 
@@ -98,13 +106,51 @@ public class VerifyRobotActivity extends AppCompatActivity {
 
         Log.i("count", "onVerification: " + count);
 
-        if (count != 4){
-            Toast.makeText(this, "Choose all images", Toast.LENGTH_SHORT).show();
-        } else if(count == 4 ){
-            Toast.makeText(this, "Verified", Toast.LENGTH_SHORT).show();
+        if (isChosen){
+            if (cbRobot.isChecked()){
+                if(count == 4 ) {
+                    alert("Congratulations!!", "Verified");
+                }else{
+                    alert("Oooops!", "Not verified");
+                }
+            } else{
+                Toast.makeText(this, "Please check the box.", Toast.LENGTH_SHORT).show();
+            }
+        } else{
+            Toast.makeText(this, "Please choose correct images.", Toast.LENGTH_SHORT).show();
         }
 
+
     }
+
+
+
+
+    private void alert(String title, String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(message).setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(VerifyRobotActivity.this, MainActivity.class);
+                        intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                    }
+                });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.setTitle(title);
+        alertDialog.show();
+    }
+
+
+
+
+
+
+
+
+
 
     public int[] shuffleImages(int[] images){
         Random rand = new Random();
