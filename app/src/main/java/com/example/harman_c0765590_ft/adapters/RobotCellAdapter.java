@@ -16,10 +16,12 @@ public class RobotCellAdapter extends BaseAdapter {
 
     private Context context;
     private int[] trafficImages;
+    private int srcImage;
 
-    public RobotCellAdapter(Context context, int[] trafficImages) {
+    public RobotCellAdapter(Context context, int[] trafficImages, int srcImage) {
         this.context = context;
         this.trafficImages = trafficImages;
+        this.srcImage = srcImage;
     }
 
     @Override
@@ -46,7 +48,9 @@ public class RobotCellAdapter extends BaseAdapter {
         ImageView imageView = convertView.findViewById(R.id.iv_cell);
 
 //        int[] images = shuffleImages(trafficImages);
-        imageView.setImageResource(trafficImages[position]);
+        imageView.setBackgroundResource(trafficImages[position]);
+        imageView.setImageResource(srcImage);
+        imageView.setAlpha(1.0f);
 
 
         return convertView;
