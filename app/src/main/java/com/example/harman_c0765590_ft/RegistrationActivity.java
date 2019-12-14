@@ -39,10 +39,13 @@ public class RegistrationActivity extends AppCompatActivity {
 
         if (!name.isEmpty() && !email.isEmpty() && !phone.isEmpty()){
 
+            UserModel userModel = new UserModel(name, email, phone);
+
             Intent intent = new Intent(this,VerifyRobotActivity.class);
+            intent.putExtra("user",userModel);
             startActivity(intent);
 
-//            UserModel userModel = new UserModel(name, email, phone);
+
 //            Intent intent = new Intent(this, MainActivity.class);
 //            intent.putExtra("user",userModel);
 //            intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);

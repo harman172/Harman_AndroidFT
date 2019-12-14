@@ -1,33 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="20dp"
     tools:context=".VerifyRobotActivity">
 
     <TextView
+        android:id="@+id/tv_heading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="@string/select_light"
-        android:textColor="#635E5E"
+        android:textColor="#6D6D6D"
         android:textSize="22sp"
         android:textStyle="italic" />
 
 
     <GridView
         android:id="@+id/grid_view"
+        android:layout_below="@id/tv_heading"
+        android:layout_above="@id/rl_robot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
         android:numColumns="3" />
 
     <RelativeLayout
+        android:id="@+id/rl_robot"
+        android:layout_above="@id/btn_verify"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginHorizontal="20dp">
 
         <CheckBox
@@ -35,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/not_robot"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
         <ImageView
@@ -55,10 +61,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="60dp"
-        android:layout_marginVertical="20dp"
+        android:layout_marginBottom="30dp"
         android:background="@color/colorButton"
         android:onClick="onVerification"
+        android:paddingVertical="7dp"
         android:text="@string/verify"
-        android:textColor="#fff" />
+        android:textColor="@color/colorWhite" />
 
-</LinearLayout>
+</RelativeLayout>

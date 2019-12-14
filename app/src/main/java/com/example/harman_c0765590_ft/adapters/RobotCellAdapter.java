@@ -48,6 +48,7 @@ public class RobotCellAdapter extends BaseAdapter {
         ImageView imageView = convertView.findViewById(R.id.iv_cell);
 
 //        int[] images = shuffleImages(trafficImages);
+
         imageView.setBackgroundResource(trafficImages[position]);
         imageView.setImageResource(srcImage);
         imageView.setAlpha(1.0f);
@@ -55,6 +56,6 @@ public class RobotCellAdapter extends BaseAdapter {
 
         return convertView;
     }
-    
+
 
 }

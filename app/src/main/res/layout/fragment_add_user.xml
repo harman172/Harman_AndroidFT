@@ -10,20 +10,23 @@
 
     <ListView
         android:id="@+id/users_list"
-        android:layout_alignParentTop="true"
-        android:layout_marginVertical="10dp"
-        android:layout_above="@+id/btn_add_user"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_add_user"
+        android:layout_alignParentTop="true"
+        android:layout_marginVertical="10dp" />
 
     <Button
         android:id="@+id/btn_add_user"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ADD User"
         android:layout_alignParentBottom="true"
-        android:layout_marginHorizontal="80dp"
-        android:textColor="#fff"
-        android:background="@color/colorButton"/>
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorButton"
+        android:paddingHorizontal="90dp"
+        android:paddingVertical="7dp"
+        android:text="ADD User"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp" />
 
 </RelativeLayout>

@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements UpdateListListene
 
     @Override
     public List<UserModel> updateList() {
+
+        Log.i("AddUser", "onCreate0: ");
         Intent intent = getIntent();
         UserModel user = (UserModel) intent.getSerializableExtra("user");
         if (user != null){

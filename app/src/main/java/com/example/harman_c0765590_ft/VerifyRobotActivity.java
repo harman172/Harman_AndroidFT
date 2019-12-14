@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.harman_c0765590_ft.adapters.RobotCellAdapter;
+import com.example.harman_c0765590_ft.models.UserModel;
 
 import java.util.Random;
 
@@ -39,6 +40,9 @@ public class VerifyRobotActivity extends AppCompatActivity {
 
         final RobotCellAdapter cellAdapter = new RobotCellAdapter(this, trafficImages,0);
         gridView.setAdapter(cellAdapter);
+
+
+
 
 
         ivRefresh.setOnClickListener(new View.OnClickListener() {
@@ -126,13 +130,21 @@ public class VerifyRobotActivity extends AppCompatActivity {
 
 
 
-    private void alert(String title, String message){
+    private void alert(String title, final String message){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(message).setCancelable(false)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(VerifyRobotActivity.this, MainActivity.class);
+
+                        if (message.equalsIgnoreCase("verified")){
+                            Log.i("AddUser", "onClick: ");
+                            Intent intent1 = getIntent();
+                            UserModel userModel = (UserModel) intent1.getSerializableExtra("user");
+                            intent.putExtra("user",userModel);
+                        }
+
                         intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }
